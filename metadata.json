@@ -1,0 +1,28 @@
+{
+  "name": "frankvandamme-apt_cacher_ng",
+  "version": "0.1.0",
+  "author": "frankvandamme",
+  "summary": "simple module to install and configure apt-cacher-ng",
+  "license": "Apache-2.0",
+  "source": "",
+  "project_page": null,
+  "issues_url": null,
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.0.0"
+    }
+  ],
+  "data_provider": null
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "8",
+        "9",
+        "10"
+      ]
+    }
+  ]
+}
+
