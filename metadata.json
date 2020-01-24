@@ -4,16 +4,14 @@
   "author": "frankvandamme",
   "summary": "simple module to install and configure apt-cacher-ng",
   "license": "Apache-2.0",
-  "source": "",
-  "project_page": null,
-  "issues_url": null,
+  "source": "https://github.com/FrankVanDamme/puppet-apt_cacher_ng.git",
+  "issues_url": "https://github.com/FrankVanDamme/puppet-apt_cacher_ng/issues",
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
       "version_requirement": ">= 1.0.0"
     }
   ],
-  "data_provider": null,
   "operatingsystem_support": [
     {
       "operatingsystem": "Debian",
@@ -23,6 +21,11 @@
         "10"
       ]
     }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.10.0 < 7.0.0"
+    }
   ]
 }
-
