@@ -5,6 +5,7 @@
   "summary": "simple module to install and configure apt-cacher-ng",
   "license": "Apache-2.0",
   "source": "https://github.com/FrankVanDamme/puppet-apt_cacher_ng.git",
+  "project_page": "https://github.com/FrankVanDamme/puppet-apt_cacher_ng",
   "issues_url": "https://github.com/FrankVanDamme/puppet-apt_cacher_ng/issues",
   "dependencies": [
     {
