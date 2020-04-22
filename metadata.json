@@ -1,6 +1,6 @@
 {
   "name": "frankvandamme-apt_cacher_ng",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "frankvandamme",
   "summary": "simple module to install and configure apt-cacher-ng",
   "license": "Apache-2.0",
