@@ -14,76 +14,42 @@
 
 ## Description
 
-Start with a one- or two-sentence summary of what the module does and/or what
-problem it solves. This is your 30-second elevator pitch for your module.
-Consider including OS/Puppet version it works with.
+This module installs `apt-cacher-ng` by distribution package. It also creates the
+cache directory `/var/cache/apt-cacher-ng` and the apt-cacher-ng user.
 
-You can give more descriptive information in a second paragraph. This paragraph
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?" If your module has a range of functionality (installation, configuration,
-management, etc.), this is the time to mention it.
+What's the value over just using a package resource somewhere? Well, since we
+manage the cache directory, it gives you the opportunity to set up your own
+logic around using a separate partition for your cached files. 
 
-## Setup
+~~~ puppet
+    Mount['/var/cache/apt-cacher-ng']
+    ->
+    File['/var/cache/apt-cacher-ng'] 
+~~~
 
-### What apt_cacher_ng affects **OPTIONAL**
+The File resource is defined in this module, the Mount is the thing you yourself
+could define outside this module. This works rather well with the
+**puppetlabs-lvm** module (tested v. 0.9.0).
 
-If it's obvious what your module touches, you can skip this section. For
-example, folks can probably figure out that your mysql_instance module affects
-their MySQL instances.
-
-If there's more that they should know about, though, this is the place to mention:
-
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you might want to include an additional "Upgrading" section
-here.
-
-### Beginning with apt_cacher_ng
-
-The very basic steps needed for a user to get the module up and running. This
-can include setup steps, if necessary, or it can be an example of the most
-basic use of the module.
+Also, there is a hiera lookup in there for **apt::proxy** since that is an
+obvious thing to have in your apt configuration (when running the Puppetlabs
+`apt` module at least), in which case, the package is installed *before* the
+proxy is configured in apt, which would create an awkward chicken and egg
+problem.
 
 ## Usage
 
-This section is where you describe how to customize, configure, and do the
-fancy stuff with your module here. It's especially helpful if you include usage
-examples and code samples for doing things with your module.
+~~~ puppet
+include apt_cacher_ng
+~~~
 
 ## Reference
 
-Users need a complete list of your module's classes, types, defined types providers, facts, and functions, along with the parameters for each. You can provide this list either via Puppet Strings code comments or as a complete list in this Reference section.
-
-* If you are using Puppet Strings code comments, this Reference section should include Strings information so that your users know how to access your documentation.
-
-* If you are not using Puppet Strings, include a list of all of your classes, defined types, and so on, along with their parameters. Each element in this listing should include:
-
-  * The data type, if applicable.
-  * A description of what the element does.
-  * Valid values, if the data type doesn't make it obvious.
-  * Default value, if any.
+One main class, one parameter:
+* `passthroughpattern`: (optional) the one configuration parameter in
+  apt-cacher-ng everyone seems to need at some point.
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc. If there
-are Known Issues, you might want to include them under their own heading here.
-
-## Development
-
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc. **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You can also add any additional sections you feel
-are necessary or important to include here. Please use the `## ` header.
+Many! This is a really simple module that just creates a directory, a user, and
+installs a package with minimal configuration.
