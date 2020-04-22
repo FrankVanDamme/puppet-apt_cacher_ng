@@ -30,7 +30,8 @@ class apt_cacher_ng (
         enable => true,
     }
 
-    $aptproxy = hiera('apt::proxy')
+    # to play nice with puppetlabs-apt:
+    $aptproxy = hiera('apt::proxy', undef)
     if is_hash ( $aptproxy ){
       if ( $aptproxy['ensure'] == present ){
         Package['apt-cacher-ng'] {
