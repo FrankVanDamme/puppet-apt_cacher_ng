@@ -16,7 +16,7 @@ class apt_cacher_ng (
         mode    => '2755',
     }
     ->
-    package { "apt-cacher-ng": 
+    package { "apt-cacher-ng":
         require => File['/var/cache/apt-cacher-ng'],
     }
     ->
@@ -28,17 +28,5 @@ class apt_cacher_ng (
     service { "apt-cacher-ng":
         ensure => running,
         enable => true,
-    }
-
-    # to play nice with puppetlabs-apt:
-    $aptproxy = hiera('apt::proxy', undef)
-    if is_hash ( $aptproxy ){
-      if ( $aptproxy['ensure'] == present ){
-        Package['apt-cacher-ng'] {
-          # conf-proxy wordt aangemaakt binnen apt module (hard coded
-          # naam)
-          before => Apt::Setting['conf-proxy'],
-        }
-      }
     }
 }
