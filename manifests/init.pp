@@ -1,5 +1,6 @@
 class apt_cacher_ng (
     $passthroughpattern = $apt_cacher_ng::params::passthroughpattern,
+    $package_ensure = present,
 ) inherits apt_cacher_ng::params {
 
     # pre-install user and file in case you want to put the data directory on a
@@ -17,6 +18,7 @@ class apt_cacher_ng (
     }
     ->
     package { "apt-cacher-ng":
+        ensure  => $package_ensure,
         require => File['/var/cache/apt-cacher-ng'],
     }
     ->
