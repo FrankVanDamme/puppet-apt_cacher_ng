@@ -1,7 +1,7 @@
 class apt_cacher_ng (
-    $passthroughpattern = $apt_cacher_ng::params::passthroughpattern,
+    $passthroughpattern = '',
     $package_ensure = present,
-) inherits apt_cacher_ng::params {
+) {
 
     # pre-install user and file in case you want to put the data directory on a
     # separate partition.
