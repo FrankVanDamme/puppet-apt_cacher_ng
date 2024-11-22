@@ -1,6 +1,7 @@
 class apt_cacher_ng (
     $passthroughpattern = '',
     $package_ensure = present,
+    $http2https = {},
 ) {
 
     # pre-install user and file in case you want to put the data directory on a
